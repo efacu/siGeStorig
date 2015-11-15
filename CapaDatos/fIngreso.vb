@@ -76,10 +76,13 @@ Public Class fIngreso
 
             cmd.Parameters.AddWithValue("@idingreso", dts.gidingreso)
             cmd.Parameters.AddWithValue("@idproveedor", dts.gidproveedor)
+            cmd.Parameters.AddWithValue("@tipo_ingreso", dts.gtipo_ingreso)
             cmd.Parameters.AddWithValue("@fecha_ingreso", dts.gfecha_ingreso)
             cmd.Parameters.AddWithValue("@tipo_documento", dts.gtipo_documento)
             cmd.Parameters.AddWithValue("@num_documento", dts.gnum_documento)
+            cmd.Parameters.AddWithValue("@monto", dts.gmonto)
             cmd.Parameters.AddWithValue("@observaciones", dts.gobservaciones)
+            cmd.Parameters.AddWithValue("@estado", dts.gestado)
             If cmd.ExecuteNonQuery Then
                 Return True
             Else
