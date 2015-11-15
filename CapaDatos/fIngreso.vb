@@ -139,5 +139,20 @@ Public Class fIngreso
     End Function
 
 
+    Public Sub buscarCodigoBarra(ByVal codigo As String, ByRef result As DataTable)
+        Try
+            conectado()
+            cmd = New SqlCommand("buscar_codigo_barra")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@codigo_barra", codigo)
+            cmd.Connection = cnn
+            Dim da As New SqlDataAdapter : da.SelectCommand = cmd
+            da.Fill(result)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            desconectado()
+        End Try
+    End Sub
 
 End Class
