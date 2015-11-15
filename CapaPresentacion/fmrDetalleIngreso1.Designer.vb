@@ -97,6 +97,8 @@ Partial Class fmrDetalleIngreso1
         Me.btnNuevoIngreso = New System.Windows.Forms.Button()
         Me.btnEditarIngreso = New System.Windows.Forms.Button()
         Me.btnBuscarIngreso = New System.Windows.Forms.Button()
+        Me.ttmensaje = New System.Windows.Forms.ToolTip(Me.components)
+        Me.dlg = New System.Windows.Forms.OpenFileDialog()
         CType(Me.datalistado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.erroricono, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -914,6 +916,15 @@ Partial Class fmrDetalleIngreso1
         Me.btnBuscarIngreso.Text = "Buscar"
         Me.btnBuscarIngreso.UseVisualStyleBackColor = False
         '
+        'ttmensaje
+        '
+        Me.ttmensaje.AutomaticDelay = 300
+        Me.ttmensaje.IsBalloon = True
+        '
+        'dlg
+        '
+        Me.dlg.FileName = "OpenFileDialog1"
+        '
         'fmrDetalleIngreso1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1032,4 +1043,6 @@ Partial Class fmrDetalleIngreso1
     Friend WithEvents btnNuevoIngreso As Button
     Friend WithEvents btnUpdateIngreso As Button
     Friend WithEvents btneliminar_ingreso As Button
+    Friend WithEvents ttmensaje As ToolTip
+    Friend WithEvents dlg As OpenFileDialog
 End Class

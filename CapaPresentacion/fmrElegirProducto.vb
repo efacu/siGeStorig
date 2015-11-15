@@ -84,9 +84,9 @@ Public Class fmrElegirProducto
         ''''''''0 no hace nada es el de inicio
 
         If txtflag.Text = "1" Then
-            fmrDetalleIngreso.txtcodigo_barra.Text = datalistado.SelectedCells.Item(2).Value
-            fmrDetalleIngreso.txtidproducto.Text = datalistado.SelectedCells.Item(1).Value
-            fmrDetalleIngreso.txtnombre_producto.Text = datalistado.SelectedCells.Item(5).Value + " " + datalistado.SelectedCells.Item(6).Value
+            fmrDetalleIngreso1.txtcodigo_barra.Text = datalistado.SelectedCells.Item(2).Value
+            fmrDetalleIngreso1.txtidproducto.Text = datalistado.SelectedCells.Item(1).Value
+            fmrDetalleIngreso1.txtnombre_producto.Text = datalistado.SelectedCells.Item(5).Value + " " + datalistado.SelectedCells.Item(6).Value
 
             Me.Close()
         ElseIf txtflag.Text = "2"

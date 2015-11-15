@@ -3,6 +3,7 @@ Imports CapaLogica
 
 Public Class fmrDetalleIngreso1
     Private dt As New DataTable
+    Private dt2 As New DataTable
     Private Sub frmingreso_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         mostrar_ingreso()
         GroupBox1.Enabled = False
@@ -139,6 +140,8 @@ Public Class fmrDetalleIngreso1
                     MessageBox.Show("Ingresoregistrado correctamente vamos añadir productos", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     mostrar_ingreso()
                     desabilito_proveedor()
+                    GroupBox4.Enabled = True
+                    GroupBox6.Enabled = True
                 Else
                     MessageBox.Show("El ingreso no fue registrado intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     mostrar_ingreso()
@@ -265,7 +268,7 @@ Public Class fmrDetalleIngreso1
 
         habilito_proveedor()
 
-
+        mostrar_articulo()
         btnUpdateIngreso.Visible = True
         btnIngresar.Visible = False
 
@@ -357,20 +360,20 @@ Public Class fmrDetalleIngreso1
     Private Sub buscar_articulo()
         Try
             Dim ds As New DataSet
-            ds.Tables.Add(dt.Copy)
+            ds.Tables.Add(dt2.Copy)
             Dim dv As New DataView(ds.Tables(0))
 
 
             dv.RowFilter = "idingreso='" & txtidingreso.Text & "'"
 
             If dv.Count <> 0 Then
-                inexistente.Visible = False
+                inexistente2.Visible = False
                 datalistado2.DataSource = dv
                 ocultar_columnas_articulo()
 
             Else
-                inexistente.Visible = True
-                datalistado.DataSource = Nothing
+                inexistente2.Visible = True
+                datalistado2.DataSource = Nothing
             End If
 
         Catch ex As Exception
@@ -378,22 +381,24 @@ Public Class fmrDetalleIngreso1
 
         End Try
     End Sub
+
+
     Private Sub mostrar_articulo()
         Try
             Dim func As New fDetalle_Ingreso
-            dt = func.mostrar
+            dt2 = func.mostrar
             datalistado2.Columns.Item("Eliminar").Visible = False
 
 
             If dt.Rows.Count <> 0 Then
-                datalistado2.DataSource = dt
+                datalistado2.DataSource = dt2
                 datalistado2.ColumnHeadersVisible = True
-                inexistente.Visible = False
+                inexistente2.Visible = False
 
             Else
                 datalistado.DataSource = Nothing
                 datalistado.ColumnHeadersVisible = False
-                inexistente.Visible = True
+                inexistente2.Visible = True
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -402,7 +407,7 @@ Public Class fmrDetalleIngreso1
 
 
         buscar_articulo()
-        txtsubtotal.Text = Format(Sumar("Subtotal", datalistado)).ToString
+        txtsubtotal.Text = Format(Sumar("Subtotal", datalistado2)).ToString
         txtmonto.Text = Val(txtsubtotal.Text) - Val(txtdescuento.Text)
 
     End Sub
@@ -441,7 +446,7 @@ Public Class fmrDetalleIngreso1
     End Sub
     Private Sub btnAgregarArticulo_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulo.Click
 
-        If Me.ValidateChildren = True And txtidproducto.Text <> "" And txtcantidad.Text <> "" And txtprecio_unitario.Text <> "" Then
+        If Me.ValidateChildren = True And txtidproducto.Text <> "" And txtprecio_unitario.Text <> "" Then
             Try
                 Dim dts As New vDetalle_Ingreso
                 Dim func As New fDetalle_Ingreso
@@ -478,4 +483,98 @@ Public Class fmrDetalleIngreso1
             MessageBox.Show("Falta ingresar algunos datos", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
+
+    Private Sub btnQuitar_articulo_Click(sender As Object, e As EventArgs) Handles btnQuitar_articulo.Click
+        Dim result As DialogResult
+
+        result = MessageBox.Show("Realmente desea quitar los artículos del ingreso?", "Eliminando registros", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+
+        If result = DialogResult.OK Then
+            Try
+                For Each row As DataGridViewRow In datalistado2.Rows
+                    Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Eliminar").Value)
+
+
+
+                    '''''
+                    ''''
+                    ''''arreglar procedimiento de almacenado idegreso cambiar por iddetalle_egreso
+                    ''''
+                    If marcado Then
+                        Dim onekey As Integer = Convert.ToInt32(row.Cells("iddetalle_ingreso").Value)
+                        Dim vdb As New vDetalle_Ingreso
+                        Dim func As New fDetalle_Ingreso
+                        vdb.giddetalle_ingreso = onekey
+                        vdb.gidproducto = datalistado2.SelectedCells.Item(2).Value
+                        vdb.gidingreso = datalistado2.SelectedCells.Item(3).Value
+                        vdb.gcantidad = datalistado2.SelectedCells.Item(9).Value
+
+
+
+                        If func.eliminar(vdb) Then
+                            If func.disminuir_stock(vdb) Then
+
+                            End If
+                        Else
+                            MessageBox.Show("Artículo fue quitado del ingreso", "Eliminando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        End If
+                    End If
+
+                Next
+                Call mostrar_articulo()
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Else
+            MessageBox.Show("Cancelando eliminación de registros", "Eliminando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Call mostrar_articulo()
+        End If
+        insertarMonto()
+        Call limpiar_articulo()
+    End Sub
+
+    Private Sub cbeliminar2_CheckedChanged(sender As Object, e As EventArgs) Handles cbeliminar2.CheckedChanged
+        If cbeliminar2.CheckState = CheckState.Checked Then
+            datalistado2.Columns.Item("Eliminar").Visible = True
+        Else
+            datalistado2.Columns.Item("Eliminar").Visible = False
+        End If
+    End Sub
+
+    Private Sub datalistado2_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datalistado2.CellContentClick
+        If e.ColumnIndex = Me.datalistado2.Columns.Item("Eliminar").Index Then
+            Dim chkcell As DataGridViewCheckBoxCell = Me.datalistado2.Rows(e.RowIndex).Cells("Eliminar")
+            chkcell.Value = Not chkcell.Value
+        End If
+    End Sub
+
+
+#Region "mostrar mensaje informativo "
+    Private Sub txtcodigo_barra_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtcodigo_barra.MouseHover
+        'mostramos un mensaje informativo
+        ttmensaje.SetToolTip(txtcodigo_barra, "Ingrese el codigo de barras, de esta manera el sistema autocompleta los demas campos")
+        ttmensaje.ToolTipTitle = "Código barra"
+        ttmensaje.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    Private Sub txtprecio_unitario_MouseHover(sender As Object, e As EventArgs) Handles txtprecio_unitario.MouseHover
+        ttmensaje.SetToolTip(txtprecio_unitario, "Ingrese el precio unitario del producto que desea agregar")
+        ttmensaje.ToolTipTitle = "Precio Ingreso"
+        ttmensaje.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    Private Sub txtcantidad_MouseHover(sender As Object, e As EventArgs) Handles txtcantidad.MouseHover
+        ttmensaje.SetToolTip(txtcantidad, "Ingrese la cantidad de unidades del producto que desea agregar")
+        ttmensaje.ToolTipTitle = "Cantidad"
+        ttmensaje.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+    Private Sub btnbuscar_producto_Click(sender As Object, e As EventArgs) Handles btnbuscar_producto.Click
+        fmrElegirProducto.txtflag.Text = "1"
+        fmrElegirProducto.ShowDialog()
+    End Sub
+
+
+
+#End Region
+
 End Class
