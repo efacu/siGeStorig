@@ -128,4 +128,22 @@ Public Class fproveedor
 
         End Try
     End Function
+
+
+    Public Sub buscarproveedor(ByRef result As DataTable)
+        Try
+            conectado()
+            cmd = New SqlCommand("buscar_proveedor")
+            cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.AddWithValue("@Descipcion", codigo)
+            cmd.Connection = cnn
+            Dim da As New SqlDataAdapter : da.SelectCommand = cmd
+            da.Fill(result)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            desconectado()
+        End Try
+    End Sub
+
 End Class

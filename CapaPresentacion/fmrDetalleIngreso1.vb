@@ -21,8 +21,7 @@ Public Class fmrDetalleIngreso1
         txtcuit.Text = ""
         txtnum_documento.Text = ""
         txtobservaciones.Text = ""
-        txtsubtotal.Text = "0"
-        txtdescuento_total.Text = "0"
+
         txtmonto.Text = "0"
         btbcancelar.Enabled = True
         btnIngresar.Visible = True
@@ -106,14 +105,18 @@ Public Class fmrDetalleIngreso1
 
     End Sub
     Sub habilito_proveedor()
-        GroupBox1.Enabled = True
+
+        GroupBox1.Visible = True
         GroupBox2.Visible = False
+        GroupBox1.Enabled = True
         GroupBox3.Enabled = True
+        GroupBox3.Visible = True
         btnIngresar.Enabled = True
         btbcancelar.Enabled = True
     End Sub
     Sub desabilito_proveedor()
-        GroupBox1.Enabled = False
+
+
         GroupBox2.Visible = False
         GroupBox3.Enabled = False
         btnIngresar.Enabled = False
@@ -126,9 +129,9 @@ Public Class fmrDetalleIngreso1
                 Dim func As New fIngreso
 
                 dts.gidproveedor = txtidproveedor.Text
-                dts.gtipo_ingreso = cbtipo_ingreso.Text
+                dts.gtipo_ingreso = cbtipo_ingreso.SelectedItem.ToString()
                 dts.gfecha_ingreso = txtfecha.Text
-                dts.gtipo_documento = cbtipo_documento.Text
+                dts.gtipo_documento = cbtipo_documento.SelectedItem.ToString()
                 dts.gnum_documento = txtnum_documento.Text
                 dts.gmonto = txtmonto.Text
                 dts.gobservaciones = txtobservaciones.Text
@@ -138,10 +141,20 @@ Public Class fmrDetalleIngreso1
 
                 If func.insertar(dts) Then
                     MessageBox.Show("Ingresoregistrado correctamente vamos añadir productos", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Dim xx As New DataTable
+                    Dim funi As New fIngreso
+                    Dim numeros As Integer
+                    funi.ultimo_id(numeros, xx)
+                    If xx.Rows.Count > 0 Then
+                        numeros = xx.Rows(0).Item("idingreso")
+                        txtidingreso.Text = numeros.ToString
+                    End If
+
                     mostrar_ingreso()
                     desabilito_proveedor()
                     GroupBox4.Enabled = True
                     GroupBox6.Enabled = True
+
                 Else
                     MessageBox.Show("El ingreso no fue registrado intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     mostrar_ingreso()
@@ -234,12 +247,14 @@ Public Class fmrDetalleIngreso1
 
     End Sub
 
-    Private Sub btnEditarIngreso_Click(sender As Object, e As EventArgs) Handles btnEditarIngreso.Click
+    Private Sub btnEditarIngreso_Click(sender As Object, e As EventArgs)
         GroupBox1.Enabled = Enabled
         GroupBox3.Enabled = Enabled
         GroupBox3.Enabled = False
         GroupBox4.Enabled = False
         GroupBox6.Enabled = False
+
+
     End Sub
 
     Private Sub btbcancelar_Click(sender As Object, e As EventArgs) Handles btbcancelar.Click
@@ -387,7 +402,8 @@ Public Class fmrDetalleIngreso1
         Try
             Dim func As New fDetalle_Ingreso
             dt2 = func.mostrar
-            datalistado2.Columns.Item("Eliminar").Visible = False
+
+            datalistado2.Columns.Item("Elimina").Visible = False
 
 
             If dt.Rows.Count <> 0 Then
@@ -407,8 +423,8 @@ Public Class fmrDetalleIngreso1
 
 
         buscar_articulo()
-        txtsubtotal.Text = Format(Sumar("Subtotal", datalistado2)).ToString
-        txtmonto.Text = Val(txtsubtotal.Text) - Val(txtdescuento.Text)
+        txtmonto.Text = Format(Sumar("Subtotal", datalistado2)).ToString
+
 
     End Sub
     Sub limpiararticulo()
@@ -418,7 +434,7 @@ Public Class fmrDetalleIngreso1
         txtnombre_producto.Text = ""
         txtprecio_unitario.Text = ""
         txtcantidad.Value = 0
-        txtstock.Value = 1
+        'txtstock.Value = 1
     End Sub
     Sub insertarMonto()
         If Me.ValidateChildren = True And txtidproveedor.Text <> "" And txtnum_documento.Text <> "" Then
@@ -453,10 +469,10 @@ Public Class fmrDetalleIngreso1
                 ''generar el id ingreso
                 dts.gidingreso = txtidingreso.Text
                 dts.gidproducto = txtidproducto.Text
-                dts.gcantidad = txtcantidad.Text
+                dts.gcantidad = CDbl(txtcantidad.Value)
                 dts.gprecio_unitario = txtprecio_unitario.Text
-                dts.gdescuento = txtdescuento.Text
-                dts.gimpuesto = txtinteres.Text
+                dts.gdescuento = 0
+                dts.gimpuesto = 0
 
 
                 If func.insertar(dts) Then
@@ -476,6 +492,7 @@ Public Class fmrDetalleIngreso1
 
                 End If
                 insertarMonto()
+                txtcodigo_barra.Focus()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -492,7 +509,7 @@ Public Class fmrDetalleIngreso1
         If result = DialogResult.OK Then
             Try
                 For Each row As DataGridViewRow In datalistado2.Rows
-                    Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Eliminar").Value)
+                    Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Elimina").Value)
 
 
 
@@ -536,15 +553,15 @@ Public Class fmrDetalleIngreso1
 
     Private Sub cbeliminar2_CheckedChanged(sender As Object, e As EventArgs) Handles cbeliminar2.CheckedChanged
         If cbeliminar2.CheckState = CheckState.Checked Then
-            datalistado2.Columns.Item("Eliminar").Visible = True
+            datalistado2.Columns.Item("Elimina").Visible = True
         Else
-            datalistado2.Columns.Item("Eliminar").Visible = False
+            datalistado2.Columns.Item("Elimina").Visible = False
         End If
     End Sub
 
     Private Sub datalistado2_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datalistado2.CellContentClick
-        If e.ColumnIndex = Me.datalistado2.Columns.Item("Eliminar").Index Then
-            Dim chkcell As DataGridViewCheckBoxCell = Me.datalistado2.Rows(e.RowIndex).Cells("Eliminar")
+        If e.ColumnIndex = Me.datalistado2.Columns.Item("Elimina").Index Then
+            Dim chkcell As DataGridViewCheckBoxCell = Me.datalistado2.Rows(e.RowIndex).Cells("Elimina")
             chkcell.Value = Not chkcell.Value
         End If
     End Sub
@@ -572,6 +589,34 @@ Public Class fmrDetalleIngreso1
         fmrElegirProducto.txtflag.Text = "1"
         fmrElegirProducto.ShowDialog()
     End Sub
+
+    Private Sub txtnombre_proveedor_TextChanged(sender As Object, e As EventArgs) Handles txtnombre_proveedor.TextChanged
+        Dim dt_Proveedor As New DataTable
+        Dim fprov As New fproveedor
+        fprov.buscarproveedor(dt_Proveedor)
+        If dt_Proveedor.Rows.Count > 0 Then
+            Me.txtidproveedor.Text = dt_Proveedor.Rows(0).Item("idproveedor")
+            Me.txtnombre_proveedor.Text = dt_Proveedor.Rows(0).Item("Descripcion")
+            Me.txtdomicilio.Text = dt_Proveedor.Rows(0).Item("Direccion")
+            Me.txtcuit.Text = dt_Proveedor.Rows(0).Item("cuit_cuil")
+
+        End If
+    End Sub
+
+    Private Sub txtcodigo_barra_keydown(sender As Object, e As KeyEventArgs) Handles txtcodigo_barra.KeyDown
+        If e.KeyData = Keys.Enter Then
+            Dim dt_productos As New DataTable
+            Dim fun As New fIngreso
+            fun.buscarCodigoBarra(txtcodigo_barra.Text, dt_productos)
+            If dt_productos.Rows.Count > 0 Then
+                Me.txtidproducto.Text = dt_productos.Rows(0).Item("idproducto")
+                Me.txtnombre_producto.Text = dt_productos.Rows(0).Item("descripcion")
+                txtcantidad.Focus()
+            End If
+        End If
+    End Sub
+
+
 
 
 
