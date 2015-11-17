@@ -135,7 +135,6 @@ Public Class fproveedor
             conectado()
             cmd = New SqlCommand("buscar_proveedor")
             cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.AddWithValue("@Descipcion", codigo)
             cmd.Connection = cnn
             Dim da As New SqlDataAdapter : da.SelectCommand = cmd
             da.Fill(result)

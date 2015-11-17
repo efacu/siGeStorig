@@ -163,7 +163,5 @@ Public Class fDetalle_Ingreso
     End Function
 
 
-
-
 End Class
 

@@ -74,7 +74,9 @@ Public Class fEgreso
             cmd.Parameters.AddWithValue("@fecha_egreso", dts.gfecha_egreso)
             cmd.Parameters.AddWithValue("@tipo_documento", dts.gtipo_documento)
             cmd.Parameters.AddWithValue("@num_documento", dts.gnum_documento)
-
+            cmd.Parameters.AddWithValue("@monto", dts.gmonto)
+            cmd.Parameters.AddWithValue("@observaciones", dts.gobservaciones)
+            cmd.Parameters.AddWithValue("@estado", dts.gestado)
             If cmd.ExecuteNonQuery Then
                 Return True
             Else
@@ -151,6 +153,20 @@ Public Class fEgreso
         End Try
     End Sub
 
-
+    Public Sub ultimo_id(ByVal ultimo As Integer, ByRef result As DataTable)
+        Try
+            conectado()
+            cmd = New SqlCommand("ultimo_id_egreso")
+            cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.AddWithValue("@codigo_barra", codigo)
+            cmd.Connection = cnn
+            Dim da As New SqlDataAdapter : da.SelectCommand = cmd
+            da.Fill(result)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            desconectado()
+        End Try
+    End Sub
 
 End Class

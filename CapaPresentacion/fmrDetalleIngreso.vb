@@ -196,13 +196,6 @@ Public Class fmrDetalleIngreso
             Try
                 For Each row As DataGridViewRow In datalistado.Rows
                     Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Eliminar").Value)
-
-
-
-                    '''''
-                    ''''
-                    ''''arreglar procedimiento de almacenado idegreso cambiar por iddetalle_egreso
-                    ''''
                     If marcado Then
                         Dim onekey As Integer = Convert.ToInt32(row.Cells("iddetalle_ingreso").Value)
                         Dim vdb As New vDetalle_Ingreso
@@ -212,8 +205,6 @@ Public Class fmrDetalleIngreso
                         vdb.gidproducto = datalistado.SelectedCells.Item(2).Value
                         vdb.gidingreso = datalistado.SelectedCells.Item(3).Value
                         vdb.gcantidad = datalistado.SelectedCells.Item(9).Value
-
-
 
                         If func.eliminar(vdb) Then
                             If func.disminuir_stock(vdb) Then

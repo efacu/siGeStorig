@@ -160,6 +160,12 @@
     <Compile Include="fmrDetalleEgreso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="fmrDetalleEgreso1.Designer.vb">
+      <DependentUpon>fmrDetalleEgreso1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fmrDetalleEgreso1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fmrDetalleIngreso.Designer.vb">
       <DependentUpon>fmrDetalleIngreso.vb</DependentUpon>
     </Compile>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmrDetalleEgreso.resx">
       <DependentUpon>fmrDetalleEgreso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmrDetalleEgreso1.resx">
+      <DependentUpon>fmrDetalleEgreso1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmrDetalleIngreso.resx">
       <DependentUpon>fmrDetalleIngreso.vb</DependentUpon>

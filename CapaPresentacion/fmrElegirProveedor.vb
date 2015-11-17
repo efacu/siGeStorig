@@ -74,17 +74,19 @@ Public Class fmrElegirProveedor
             'fmrDetalleIngreso1.txtidigreso.Text = datalistado.SelectedCells.Item(1).Value
             fmrDetalleIngreso1.txtidproveedor.Text = datalistado.SelectedCells.Item(1).Value
             fmrDetalleIngreso1.txtnombre_proveedor.Text = datalistado.SelectedCells.Item(2).Value + ", " + datalistado.SelectedCells.Item(3).Value + " " + datalistado.SelectedCells.Item(4).Value
-            '' fmrDetalleIngreso.txtdomicilio.Text = datalistado.SelectedCells.Item(10).Value + ", " + datalistado.SelectedCells.Item(9).Value + ". CP:" + datalistado.SelectedCells.Item(8).Value
-            'fmrDetalleIngreso.txtcuit.Text = datalistado.SelectedCells.Item(5).Value
+            fmrDetalleIngreso1.txtdomicilio.Text = datalistado.SelectedCells.Item(10).Value + ", " + datalistado.SelectedCells.Item(9).Value + ". CP:" + datalistado.SelectedCells.Item(8).Value
+            fmrDetalleIngreso1.txtcuit.Text = datalistado.SelectedCells.Item(5).Value
+            fmrDetalleIngreso1.txttelefono.Text = datalistado.SelectedCells.Item(11).Value
             Me.Close()
 
-        ElseIf txtflag.Text = "3" Then
+            'ElseIf txtflag.Text = "3" Then
 
-            fmrIngreso.txtidproveedor.Text = datalistado.SelectedCells.Item(1).Value
-            fmrIngreso.txtnombre_proveedor.Text = datalistado.SelectedCells.Item(2).Value + ", " + datalistado.SelectedCells.Item(3).Value + " " + datalistado.SelectedCells.Item(4).Value
-            'fmrIngreso.txtdomicilio.Text = datalistado.SelectedCells.Item(10).Value + ", " + datalistado.SelectedCells.Item(9).Value + ". CP:" + datalistado.SelectedCells.Item(8).Value
-            'fmr.txtcuit.Text = datalistado.SelectedCells.Item(5).Value
-            Me.Close()
+            '    fmrDetalleEgreso1.txtidcliente.Text = datalistado.SelectedCells.Item(1).Value
+            '    fmrDetalleEgreso1.txtnombre_Cliente.Text = datalistado.SelectedCells.Item(2).Value + ", " + datalistado.SelectedCells.Item(3).Value + " " + datalistado.SelectedCells.Item(4).Value
+            '    fmrDetalleIngreso1.txtdomicilio.Text = datalistado.SelectedCells.Item(10).Value + ", " + datalistado.SelectedCells.Item(9).Value + ". CP:" + datalistado.SelectedCells.Item(8).Value
+            '    fmrDetalleIngreso1.txtcuit.Text = datalistado.SelectedCells.Item(5).Value
+            '    fmrDetalleIngreso1.txttelefono.Text = datalistado.SelectedCells.Item(11).Value
+            '    Me.Close()
 
         End If
     End Sub
@@ -102,7 +104,4 @@ Public Class fmrElegirProveedor
         buscar()
     End Sub
 
-    Private Sub datalistado_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datalistado.CellContentClick
-
-    End Sub
 End Class

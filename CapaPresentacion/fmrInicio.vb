@@ -13,8 +13,8 @@
     End Sub
 
     Private Sub RegistroDeVentasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegistroDeVentasToolStripMenuItem.Click
-        fmrEgreso.MdiParent = Me
-        fmrEgreso.Show()
+        fmrDetalleEgreso1.MdiParent = Me
+        fmrDetalleEgreso1.Show()
     End Sub
 
     Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
@@ -142,9 +142,9 @@
     End Sub
 
     Private Sub RegistroIngresosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegistroIngresosToolStripMenuItem.Click
-        fmrIngreso.txtflag.Text = "1"
-        fmrIngreso.MdiParent = Me
-        fmrIngreso.Show()
+        fmrDetalleIngreso1.txtflag.Text = "1"
+        fmrDetalleIngreso1.MdiParent = Me
+        fmrDetalleIngreso1.Show()
     End Sub
 
     Private Sub ProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProveedoresToolStripMenuItem.Click

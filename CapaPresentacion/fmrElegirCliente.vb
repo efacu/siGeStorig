@@ -76,9 +76,13 @@ Public Class fmrElegirCliente
 
 
     Private Sub datalistado_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datalistado.CellDoubleClick
-        If txtflag.Text = "3" Then
-            fmrEgreso.txtidcliente.Text = datalistado.SelectedCells.Item(1).Value
-            fmrEgreso.txtnombre_cliente.Text = datalistado.SelectedCells.Item(2).Value + " " + datalistado.SelectedCells.Item(3).Value
+        If txtflag.Text = "1" Then
+            fmrDetalleEgreso1.txtidcliente.Text = datalistado.SelectedCells.Item(1).Value
+            fmrDetalleEgreso1.txtnombre_Cliente.Text = datalistado.SelectedCells.Item(2).Value + " " + datalistado.SelectedCells.Item(3).Value
+            fmrDetalleEgreso1.txtdomicilio.Text = datalistado.SelectedCells.Item(9).Value + ", " + datalistado.SelectedCells.Item(8).Value + ". CP: " + datalistado.SelectedCells.Item(7).Value
+            fmrDetalleEgreso1.txtdni.text = datalistado.SelectedCells.Item(4).Value
+            fmrDetalleEgreso1.txttelefono.Text = datalistado.SelectedCells.Item(10).Value
+
             Me.Close()
         End If
     End Sub

@@ -42,6 +42,8 @@ Partial Class fmrDetalleIngreso1
         Me.btbcancelar = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txttelefono = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
         Me.btnUpdateIngreso = New System.Windows.Forms.Button()
         Me.btnIngresar = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -88,8 +90,6 @@ Partial Class fmrDetalleIngreso1
         Me.btnBuscarIngreso = New System.Windows.Forms.Button()
         Me.ttmensaje = New System.Windows.Forms.ToolTip(Me.components)
         Me.dlg = New System.Windows.Forms.OpenFileDialog()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.datalistado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.erroricono, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +105,7 @@ Partial Class fmrDetalleIngreso1
         '
         'txtflag
         '
-        Me.txtflag.Location = New System.Drawing.Point(341, 60)
+        Me.txtflag.Location = New System.Drawing.Point(620, 29)
         Me.txtflag.Name = "txtflag"
         Me.txtflag.Size = New System.Drawing.Size(66, 20)
         Me.txtflag.TabIndex = 30
@@ -121,9 +121,9 @@ Partial Class fmrDetalleIngreso1
         'cbeliminar
         '
         Me.cbeliminar.AutoSize = True
-        Me.cbeliminar.Location = New System.Drawing.Point(15, 194)
+        Me.cbeliminar.Location = New System.Drawing.Point(630, 104)
         Me.cbeliminar.Name = "cbeliminar"
-        Me.cbeliminar.Size = New System.Drawing.Size(82, 17)
+        Me.cbeliminar.Size = New System.Drawing.Size(70, 17)
         Me.cbeliminar.TabIndex = 16
         Me.cbeliminar.Text = "Eliminar"
         Me.cbeliminar.UseVisualStyleBackColor = True
@@ -131,7 +131,7 @@ Partial Class fmrDetalleIngreso1
         'inexistente
         '
         Me.inexistente.AutoSize = True
-        Me.inexistente.Location = New System.Drawing.Point(196, 113)
+        Me.inexistente.Location = New System.Drawing.Point(247, 110)
         Me.inexistente.Name = "inexistente"
         Me.inexistente.Size = New System.Drawing.Size(93, 13)
         Me.inexistente.TabIndex = 3
@@ -144,11 +144,11 @@ Partial Class fmrDetalleIngreso1
         Me.datalistado.AllowUserToDeleteRows = False
         Me.datalistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datalistado.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Eliminar})
-        Me.datalistado.Location = New System.Drawing.Point(15, 48)
+        Me.datalistado.Location = New System.Drawing.Point(8, 44)
         Me.datalistado.Name = "datalistado"
         Me.datalistado.ReadOnly = True
         Me.datalistado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datalistado.Size = New System.Drawing.Size(437, 106)
+        Me.datalistado.Size = New System.Drawing.Size(601, 137)
         Me.datalistado.TabIndex = 0
         '
         'GroupBox2
@@ -163,9 +163,9 @@ Partial Class fmrDetalleIngreso1
         Me.GroupBox2.Controls.Add(Me.btncancelar_busqueda)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.Color.CadetBlue
-        Me.GroupBox2.Location = New System.Drawing.Point(1072, 82)
+        Me.GroupBox2.Location = New System.Drawing.Point(4, 68)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(476, 231)
+        Me.GroupBox2.Size = New System.Drawing.Size(719, 184)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Listado de ingresos"
@@ -175,9 +175,9 @@ Partial Class fmrDetalleIngreso1
         '
         Me.btneditar_selecionado.BackColor = System.Drawing.Color.DarkCyan
         Me.btneditar_selecionado.ForeColor = System.Drawing.Color.White
-        Me.btneditar_selecionado.Location = New System.Drawing.Point(236, 189)
+        Me.btneditar_selecionado.Location = New System.Drawing.Point(615, 44)
         Me.btneditar_selecionado.Name = "btneditar_selecionado"
-        Me.btneditar_selecionado.Size = New System.Drawing.Size(113, 25)
+        Me.btneditar_selecionado.Size = New System.Drawing.Size(97, 25)
         Me.btneditar_selecionado.TabIndex = 13
         Me.btneditar_selecionado.Text = "Editar"
         Me.btneditar_selecionado.UseVisualStyleBackColor = False
@@ -186,16 +186,16 @@ Partial Class fmrDetalleIngreso1
         '
         Me.btneliminar_ingreso.BackColor = System.Drawing.Color.DarkCyan
         Me.btneliminar_ingreso.ForeColor = System.Drawing.Color.White
-        Me.btneliminar_ingreso.Location = New System.Drawing.Point(115, 189)
+        Me.btneliminar_ingreso.Location = New System.Drawing.Point(616, 72)
         Me.btneliminar_ingreso.Name = "btneliminar_ingreso"
-        Me.btneliminar_ingreso.Size = New System.Drawing.Size(113, 25)
+        Me.btneliminar_ingreso.Size = New System.Drawing.Size(97, 25)
         Me.btneliminar_ingreso.TabIndex = 17
         Me.btneliminar_ingreso.Text = "Eliminar"
         Me.btneliminar_ingreso.UseVisualStyleBackColor = False
         '
         'txtbuscar
         '
-        Me.txtbuscar.Location = New System.Drawing.Point(199, 21)
+        Me.txtbuscar.Location = New System.Drawing.Point(187, 16)
         Me.txtbuscar.Name = "txtbuscar"
         Me.txtbuscar.Size = New System.Drawing.Size(229, 20)
         Me.txtbuscar.TabIndex = 2
@@ -204,9 +204,9 @@ Partial Class fmrDetalleIngreso1
         '
         Me.cbocampo.FormattingEnabled = True
         Me.cbocampo.Items.AddRange(New Object() {"num_documento", "fecha_ingreso", "tipo_ingreso", "tipo_documento"})
-        Me.cbocampo.Location = New System.Drawing.Point(15, 21)
+        Me.cbocampo.Location = New System.Drawing.Point(10, 16)
         Me.cbocampo.Name = "cbocampo"
-        Me.cbocampo.Size = New System.Drawing.Size(177, 21)
+        Me.cbocampo.Size = New System.Drawing.Size(157, 21)
         Me.cbocampo.TabIndex = 1
         Me.cbocampo.Text = "num_documento"
         '
@@ -214,7 +214,7 @@ Partial Class fmrDetalleIngreso1
         '
         Me.btncancelar_busqueda.BackColor = System.Drawing.Color.DarkCyan
         Me.btncancelar_busqueda.ForeColor = System.Drawing.Color.White
-        Me.btncancelar_busqueda.Location = New System.Drawing.Point(356, 189)
+        Me.btncancelar_busqueda.Location = New System.Drawing.Point(616, 148)
         Me.btncancelar_busqueda.Name = "btncancelar_busqueda"
         Me.btncancelar_busqueda.Size = New System.Drawing.Size(97, 25)
         Me.btncancelar_busqueda.TabIndex = 12
@@ -229,7 +229,7 @@ Partial Class fmrDetalleIngreso1
         '
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox2.Image = Global.CapaPresentacion.My.Resources.Resources.egresos
-        Me.PictureBox2.Location = New System.Drawing.Point(24, 12)
+        Me.PictureBox2.Location = New System.Drawing.Point(-6, 3)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(99, 54)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -284,7 +284,7 @@ Partial Class fmrDetalleIngreso1
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DarkCyan
-        Me.Label11.Location = New System.Drawing.Point(136, 22)
+        Me.Label11.Location = New System.Drawing.Point(106, 13)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(257, 29)
         Me.Label11.TabIndex = 33
@@ -292,7 +292,7 @@ Partial Class fmrDetalleIngreso1
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.txttelefono)
         Me.GroupBox1.Controls.Add(Me.Label21)
         Me.GroupBox1.Controls.Add(Me.btnUpdateIngreso)
         Me.GroupBox1.Controls.Add(Me.btnIngresar)
@@ -306,12 +306,29 @@ Partial Class fmrDetalleIngreso1
         Me.GroupBox1.Controls.Add(Me.btbcancelar)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox1.Location = New System.Drawing.Point(8, 159)
+        Me.GroupBox1.Location = New System.Drawing.Point(4, 140)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(738, 107)
+        Me.GroupBox1.Size = New System.Drawing.Size(719, 107)
         Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Seleccione Proveedor"
+        '
+        'txttelefono
+        '
+        Me.txttelefono.Enabled = False
+        Me.txttelefono.Location = New System.Drawing.Point(397, 69)
+        Me.txttelefono.Name = "txttelefono"
+        Me.txttelefono.Size = New System.Drawing.Size(160, 20)
+        Me.txttelefono.TabIndex = 47
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(324, 72)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(61, 13)
+        Me.Label21.TabIndex = 46
+        Me.Label21.Text = "Telefono:"
         '
         'btnUpdateIngreso
         '
@@ -373,13 +390,12 @@ Partial Class fmrDetalleIngreso1
         '
         'txtnombre_proveedor
         '
-        Me.txtnombre_proveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txtnombre_proveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.txtnombre_proveedor.Enabled = False
         Me.txtnombre_proveedor.Location = New System.Drawing.Point(113, 17)
         Me.txtnombre_proveedor.Name = "txtnombre_proveedor"
         Me.txtnombre_proveedor.Size = New System.Drawing.Size(332, 20)
         Me.txtnombre_proveedor.TabIndex = 7
-        Me.ttmensaje.SetToolTip(Me.txtnombre_proveedor, "Ingrese el codigo de barra")
+        Me.ttmensaje.SetToolTip(Me.txtnombre_proveedor, "Ingrese el nombre del proveedor")
         '
         'Label2
         '
@@ -392,7 +408,7 @@ Partial Class fmrDetalleIngreso1
         '
         'txtidproveedor
         '
-        Me.txtidproveedor.Location = New System.Drawing.Point(468, 22)
+        Me.txtidproveedor.Location = New System.Drawing.Point(394, 3)
         Me.txtidproveedor.Name = "txtidproveedor"
         Me.txtidproveedor.Size = New System.Drawing.Size(55, 20)
         Me.txtidproveedor.TabIndex = 2
@@ -401,7 +417,7 @@ Partial Class fmrDetalleIngreso1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(139, 63)
+        Me.Label1.Location = New System.Drawing.Point(404, 29)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 1
@@ -468,7 +484,7 @@ Partial Class fmrDetalleIngreso1
         'txtidingreso
         '
         Me.txtidingreso.Enabled = False
-        Me.txtidingreso.Location = New System.Drawing.Point(225, 60)
+        Me.txtidingreso.Location = New System.Drawing.Point(473, 26)
         Me.txtidingreso.Name = "txtidingreso"
         Me.txtidingreso.Size = New System.Drawing.Size(104, 20)
         Me.txtidingreso.TabIndex = 0
@@ -487,9 +503,9 @@ Partial Class fmrDetalleIngreso1
         Me.GroupBox3.Controls.Add(Me.txtnum_documento)
         Me.GroupBox3.Controls.Add(Me.Label5)
         Me.GroupBox3.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 86)
+        Me.GroupBox3.Location = New System.Drawing.Point(4, 63)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(738, 71)
+        Me.GroupBox3.Size = New System.Drawing.Size(719, 71)
         Me.GroupBox3.TabIndex = 35
         Me.GroupBox3.TabStop = False
         '
@@ -516,9 +532,9 @@ Partial Class fmrDetalleIngreso1
         '
         Me.GroupBox5.Controls.Add(Me.Label19)
         Me.GroupBox5.Controls.Add(Me.txtmonto)
-        Me.GroupBox5.Location = New System.Drawing.Point(593, 382)
+        Me.GroupBox5.Location = New System.Drawing.Point(4, 600)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(153, 104)
+        Me.GroupBox5.Size = New System.Drawing.Size(719, 51)
         Me.GroupBox5.TabIndex = 50
         Me.GroupBox5.TabStop = False
         '
@@ -527,7 +543,7 @@ Partial Class fmrDetalleIngreso1
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label19.Location = New System.Drawing.Point(50, 25)
+        Me.Label19.Location = New System.Drawing.Point(485, 23)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(56, 18)
         Me.Label19.TabIndex = 54
@@ -540,7 +556,7 @@ Partial Class fmrDetalleIngreso1
         Me.txtmonto.Enabled = False
         Me.txtmonto.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtmonto.ForeColor = System.Drawing.Color.Red
-        Me.txtmonto.Location = New System.Drawing.Point(9, 62)
+        Me.txtmonto.Location = New System.Drawing.Point(565, 18)
         Me.txtmonto.MaxLength = 9
         Me.txtmonto.Name = "txtmonto"
         Me.txtmonto.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -563,9 +579,9 @@ Partial Class fmrDetalleIngreso1
         Me.GroupBox4.Controls.Add(Me.txtidproducto)
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox4.Location = New System.Drawing.Point(8, 272)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 253)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(738, 104)
+        Me.GroupBox4.Size = New System.Drawing.Size(719, 104)
         Me.GroupBox4.TabIndex = 51
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Detalle de Productos"
@@ -690,9 +706,9 @@ Partial Class fmrDetalleIngreso1
         Me.GroupBox6.Controls.Add(Me.datalistado2)
         Me.GroupBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox6.Location = New System.Drawing.Point(8, 382)
+        Me.GroupBox6.Location = New System.Drawing.Point(4, 363)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(579, 233)
+        Me.GroupBox6.Size = New System.Drawing.Size(719, 233)
         Me.GroupBox6.TabIndex = 52
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Listado de Items de Artículos"
@@ -747,7 +763,7 @@ Partial Class fmrDetalleIngreso1
         Me.datalistado2.Name = "datalistado2"
         Me.datalistado2.ReadOnly = True
         Me.datalistado2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datalistado2.Size = New System.Drawing.Size(552, 174)
+        Me.datalistado2.Size = New System.Drawing.Size(685, 174)
         Me.datalistado2.TabIndex = 0
         '
         'Elimina
@@ -760,7 +776,7 @@ Partial Class fmrDetalleIngreso1
         '
         Me.btnNuevoIngreso.BackColor = System.Drawing.Color.DarkCyan
         Me.btnNuevoIngreso.ForeColor = System.Drawing.Color.White
-        Me.btnNuevoIngreso.Location = New System.Drawing.Point(436, 51)
+        Me.btnNuevoIngreso.Location = New System.Drawing.Point(492, 29)
         Me.btnNuevoIngreso.Name = "btnNuevoIngreso"
         Me.btnNuevoIngreso.Size = New System.Drawing.Size(113, 25)
         Me.btnNuevoIngreso.TabIndex = 1
@@ -771,7 +787,7 @@ Partial Class fmrDetalleIngreso1
         '
         Me.btnBuscarIngreso.BackColor = System.Drawing.Color.DarkCyan
         Me.btnBuscarIngreso.ForeColor = System.Drawing.Color.White
-        Me.btnBuscarIngreso.Location = New System.Drawing.Point(602, 51)
+        Me.btnBuscarIngreso.Location = New System.Drawing.Point(610, 29)
         Me.btnBuscarIngreso.Name = "btnBuscarIngreso"
         Me.btnBuscarIngreso.Size = New System.Drawing.Size(113, 25)
         Me.btnBuscarIngreso.TabIndex = 221
@@ -787,44 +803,28 @@ Partial Class fmrDetalleIngreso1
         '
         Me.dlg.FileName = "OpenFileDialog1"
         '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(324, 72)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(61, 13)
-        Me.Label21.TabIndex = 46
-        Me.Label21.Text = "Telefono:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(347, 69)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(160, 20)
-        Me.TextBox1.TabIndex = 47
-        '
         'fmrDetalleIngreso1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1479, 626)
+        Me.ClientSize = New System.Drawing.Size(730, 658)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox3)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnBuscarIngreso)
         Me.Controls.Add(Me.btnNuevoIngreso)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox5)
-        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.txtflag)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.txtidproveedor)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtidingreso)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.SteelBlue
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "fmrDetalleIngreso1"
@@ -915,7 +915,7 @@ Partial Class fmrDetalleIngreso1
     Friend WithEvents btneliminar_ingreso As Button
     Friend WithEvents ttmensaje As ToolTip
     Friend WithEvents dlg As OpenFileDialog
-    Friend WithEvents Elimina As DataGridViewCheckBoxColumn
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txttelefono As TextBox
     Friend WithEvents Label21 As Label
+    Friend WithEvents Elimina As DataGridViewCheckBoxColumn
 End Class
