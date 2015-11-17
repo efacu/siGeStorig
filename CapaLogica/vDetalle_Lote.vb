@@ -1,78 +1,98 @@
 ﻿Public Class vDetalle_Lote
-    Dim iddetalle_lote, idlote, idproducto As Integer
-    Dim deposito_stockactual As Double
-    '' Dim deposito_stock_actual As Date
-    Dim observacion As String
+    'Dim idlote, idproducto As Integer
+    'Dim cantidad As Double
+    ''' Dim deposito_stock_actual As Date
+
+    'Dim fecha_vencimiento, fecha_ingreso As Date
+    'Dim observaciones As String
+    'Dim estado As String
+
+    'Public Property gidlote
+    '    Get
+    '        Return idlote
+
+    '    End Get
+    '    Set(ByVal value)
+    '        idlote = value
+    '    End Set
+    'End Property
+
+    'Public Property gidproducto
+    '    Get
+    '        Return idproducto
+
+    '    End Get
+    '    Set(ByVal value)
+    '        idproducto = value
+    '    End Set
+    'End Property
+
+    'Public Property gcantidad
+    '    Get
+    '        Return cantidad
+
+    '    End Get
+    '    Set(ByVal value)
+    '        cantidad = value
+    '    End Set
+    'End Property
+    'Public Property gfecha_vencimiento
+    '    Get
+    '        Return fecha_vencimiento
+
+    '    End Get
+    '    Set(ByVal value)
+    '        fecha_vencimiento = value
+    '    End Set
+    'End Property
+    'Public Property gfecha_ingreso
+    '    Get
+    '        Return fecha_ingreso
+
+    '    End Get
+    '    Set(ByVal value)
+    '        fecha_ingreso = value
+    '    End Set
+    'End Property
+    'Public Property gobservaciones
+    '    Get
+    '        Return observaciones
+
+    '    End Get
+    '    Set(ByVal value)
+    '        observaciones = value
+    '    End Set
+    'End Property
+    'Public Property gestado
+    '    Get
+    '        Return estado
+
+    '    End Get
+    '    Set(ByVal value)
+    '        estado = value
+    '    End Set
+    'End Property
+    'Public Sub New()
+
+    'End Sub
 
 
-    Public Property giddetalle_lote
-        Get
-            Return iddetalle_lote
-
-        End Get
-        Set(ByVal value)
-            iddetalle_lote = value
-        End Set
-    End Property
-    Public Property gidlote
-        Get
-            Return idlote
-
-        End Get
-        Set(ByVal value)
-            idlote = value
-        End Set
-    End Property
-    Public Property gidproducto
-        Get
-            Return idproducto
-
-        End Get
-        Set(ByVal value)
-            idproducto = value
-        End Set
-    End Property
-
-    Public Property gdeposito_stockactual
-        Get
-            Return deposito_stockactual
-
-        End Get
-        Set(ByVal value)
-            deposito_stockactual = value
-        End Set
-    End Property
-
-    Public Property gobservacion
-        Get
-            Return observacion
-
-        End Get
-        Set(ByVal value)
-            observacion = value
-        End Set
-    End Property
+    'Public Sub New(ByVal idlote As Integer,
+    '               ByVal idproducto As Integer,
+    '               ByVal cantidad As Double,
+    '               ByVal fecha_vencimiento As Date,
+    '               ByVal fecha_ingreso As Date,
+    '               ByVal observaciones As String,
+    '               ByVal estado As String)
+    '    gidlote = idlote
+    '    gidproducto = idproducto
+    '    gcantidad = cantidad
+    '    gfecha_vencimiento = fecha_vencimiento
+    '    gfecha_ingreso = fecha_ingreso
+    '    gobservaciones = observaciones
+    '    gestado = estado
 
 
 
-
-    Public Sub New()
-
-    End Sub
-
-
-    Public Sub New(ByVal iddetalle_lote As Integer,
-                   ByVal idlote As Integer,
-                   ByVal idproducto As Integer,
-                   ByVal deposito_stoclactual As Date,
-                   ByVal descuento As String)
-        giddetalle_lote = iddetalle_lote
-        gidlote = idlote
-        gidproducto = idproducto
-        gdeposito_stockactual = deposito_stockactual
-        gobservacion = observacion
-
-
-
-    End Sub
+    'End Sub
 End Class

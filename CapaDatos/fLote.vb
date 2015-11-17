@@ -39,9 +39,14 @@ Public Class fLote
             cmd.Connection = cnn
 
 
+            cmd.Parameters.AddWithValue("@idingreso", dts.gidingreso)
+            cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
             cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
             cmd.Parameters.AddWithValue("@fecha_vencimiento", dts.gfecha_vencimiento)
-            cmd.Parameters.AddWithValue("@activo", dts.gactivo)
+            cmd.Parameters.AddWithValue("@fecha_ingreso", dts.gfecha_ingreso)
+            cmd.Parameters.AddWithValue("@observaciones", dts.gobservaciones)
+            cmd.Parameters.AddWithValue("@estado", dts.gestado)
+
 
             If cmd.ExecuteNonQuery Then
                 Return True
@@ -67,9 +72,13 @@ Public Class fLote
             cmd.Connection = cnn
 
             cmd.Parameters.AddWithValue("@idlote", dts.gidlote)
+            cmd.Parameters.AddWithValue("@idingreso", dts.gidingreso)
+            cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
             cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
             cmd.Parameters.AddWithValue("@fecha_vencimiento", dts.gfecha_vencimiento)
-            cmd.Parameters.AddWithValue("@activo", dts.gactivo)
+            cmd.Parameters.AddWithValue("@fecha_ingreso", dts.gfecha_ingreso)
+            cmd.Parameters.AddWithValue("@observacion", dts.gobservaciones)
+            cmd.Parameters.AddWithValue("@estado", dts.gestado)
 
             If cmd.ExecuteNonQuery Then
                 Return True
@@ -93,14 +102,65 @@ Public Class fLote
 
             cmd.Parameters.Add("@idlote", SqlDbType.NVarChar, 50).Value = dts.gidlote
             If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
+                Return True
+            Else
                 Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
 
-            End Try
-        End Function
-    End Class
+        End Try
+    End Function
+
+    Public Function aumentar_stock(ByVal dts As vLote) As Boolean
+        Try
+            conectado()
+            cmd = New SqlCommand("aumentar_stock")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+
+            cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
+            cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
+
+            ''cmd.Parameters.AddWithValue("@precio_ingreso", dts.gprecio_unitario)
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            desconectado()
+        End Try
+    End Function
+
+
+    Public Function disminuir_stock(ByVal dts As vLote) As Boolean
+        Try
+            conectado()
+            cmd = New SqlCommand("disminuir_stock")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+
+            cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
+            cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            desconectado()
+        End Try
+    End Function
+
+End Class

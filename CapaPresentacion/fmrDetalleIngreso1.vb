@@ -478,17 +478,15 @@ Public Class fmrDetalleIngreso1
 
 
                 If func.insertar(dts) Then
-                    If func.aumentar_stock(dts) Then
-
-                    End If
-                    MessageBox.Show("Artículo fue añadido correctamente egreso", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    insertar_lote()
+                    MessageBox.Show("Producto fue añadido correctamente egreso", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     mostrar_articulo()
                     limpiararticulo()
 
 
 
                 Else
-                    MessageBox.Show("Artículo fue añadido correctamente a la venta intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Producto no fue añadido intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     mostrar_articulo()
                     limpiararticulo()
 
@@ -502,6 +500,20 @@ Public Class fmrDetalleIngreso1
             MessageBox.Show("Falta ingresar algunos datos", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
+
+    Dim loteaceptado_cancelado As Integer
+    Private Function insertar_lote() As Boolean
+        fmrLote.txtidingreso.Text = txtidingreso.Text
+        fmrLote.txtidproducto.Text = txtidproducto.Text
+        fmrLote.txtcantidad.Text = txtcantidad.Value
+        fmrLote.txtfecha_ingreso.Text = txtfecha.Text
+        fmrLote.ShowDialog()
+
+
+
+    End Function
+
+
 
     Private Sub btnQuitar_articulo_Click(sender As Object, e As EventArgs) Handles btnQuitar_articulo.Click
         Dim result As DialogResult
@@ -518,8 +530,8 @@ Public Class fmrDetalleIngreso1
                         Dim vdb As New vDetalle_Ingreso
                         Dim func As New fDetalle_Ingreso
                         vdb.giddetalle_ingreso = onekey
-                        vdb.gidproducto = datalistado2.SelectedCells.Item(2).Value
-                        vdb.gidingreso = datalistado2.SelectedCells.Item(3).Value
+                        vdb.gidproducto = datalistado2.SelectedCells.Item(3).Value
+                        vdb.gidingreso = datalistado2.SelectedCells.Item(2).Value
                         vdb.gcantidad = Convert.ToInt64(datalistado2.SelectedCells.Item(7).Value)
 
                         If func.eliminar(vdb) Then

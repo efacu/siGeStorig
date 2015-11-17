@@ -35,6 +35,7 @@ Partial Class fmrDetalleEgreso1
         Me.cbtipo_documento = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtnum_documento = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btneditar_selecionado = New System.Windows.Forms.Button()
         Me.btneliminar_egreso = New System.Windows.Forms.Button()
@@ -45,11 +46,12 @@ Partial Class fmrDetalleEgreso1
         Me.datalistado = New System.Windows.Forms.DataGridView()
         Me.Eliminar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.btncancelar_busqueda = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtmonto = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.txtstock = New System.Windows.Forms.NumericUpDown()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txtcodigo_barra = New System.Windows.Forms.TextBox()
         Me.txtcantidad = New System.Windows.Forms.NumericUpDown()
@@ -62,7 +64,7 @@ Partial Class fmrDetalleEgreso1
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtidproducto = New System.Windows.Forms.TextBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.txtiddetalle_ingreso = New System.Windows.Forms.TextBox()
+        Me.txtiddetalle_egreso = New System.Windows.Forms.TextBox()
         Me.btnQuitar_articulo = New System.Windows.Forms.Button()
         Me.cbeliminar2 = New System.Windows.Forms.CheckBox()
         Me.inexistente2 = New System.Windows.Forms.LinkLabel()
@@ -90,11 +92,13 @@ Partial Class fmrDetalleEgreso1
         Me.txtidcliente = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.btnimprimir = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.datalistado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        CType(Me.txtstock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcantidad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
         CType(Me.datalistado2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,6 +229,16 @@ Partial Class fmrDetalleEgreso1
         Me.txtnum_documento.Size = New System.Drawing.Size(112, 20)
         Me.txtnum_documento.TabIndex = 5
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(259, 47)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(81, 13)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "Numero Doc:"
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.btneditar_selecionado)
@@ -334,18 +348,9 @@ Partial Class fmrDetalleEgreso1
         Me.btncancelar_busqueda.Text = "Cancelar"
         Me.btncancelar_busqueda.UseVisualStyleBackColor = False
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(259, 47)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(81, 13)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Numero Doc:"
-        '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.btnimprimir)
         Me.GroupBox5.Controls.Add(Me.Label19)
         Me.GroupBox5.Controls.Add(Me.txtmonto)
         Me.GroupBox5.Location = New System.Drawing.Point(10, 596)
@@ -402,12 +407,33 @@ Partial Class fmrDetalleEgreso1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Detalle del Producto:"
         '
+        'txtstock
+        '
+        Me.txtstock.Location = New System.Drawing.Point(359, 30)
+        Me.txtstock.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
+        Me.txtstock.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txtstock.Name = "txtstock"
+        Me.txtstock.Size = New System.Drawing.Size(66, 20)
+        Me.txtstock.TabIndex = 237
+        Me.txtstock.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txtstock.Visible = False
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(321, 43)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(41, 13)
+        Me.Label15.TabIndex = 236
+        Me.Label15.Text = "Stock: "
+        Me.Label15.Visible = False
+        '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label13.Location = New System.Drawing.Point(7, 25)
+        Me.Label13.Location = New System.Drawing.Point(12, 25)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(88, 13)
         Me.Label13.TabIndex = 42
@@ -425,14 +451,15 @@ Partial Class fmrDetalleEgreso1
         'txtcantidad
         '
         Me.txtcantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcantidad.Location = New System.Drawing.Point(113, 56)
+        Me.txtcantidad.Location = New System.Drawing.Point(113, 55)
         Me.txtcantidad.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         Me.txtcantidad.Name = "txtcantidad"
-        Me.txtcantidad.Size = New System.Drawing.Size(77, 20)
+        Me.txtcantidad.Size = New System.Drawing.Size(72, 20)
         Me.txtcantidad.TabIndex = 13
         '
         'txtprecio_unitario
         '
+        Me.txtprecio_unitario.Enabled = False
         Me.txtprecio_unitario.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtprecio_unitario.Location = New System.Drawing.Point(403, 55)
         Me.txtprecio_unitario.Name = "txtprecio_unitario"
@@ -466,7 +493,7 @@ Partial Class fmrDetalleEgreso1
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label7.Location = New System.Drawing.Point(5, 58)
+        Me.Label7.Location = New System.Drawing.Point(12, 58)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(65, 13)
         Me.Label7.TabIndex = 35
@@ -515,7 +542,6 @@ Partial Class fmrDetalleEgreso1
         '
         'GroupBox6
         '
-        Me.GroupBox6.Controls.Add(Me.txtiddetalle_ingreso)
         Me.GroupBox6.Controls.Add(Me.btnQuitar_articulo)
         Me.GroupBox6.Controls.Add(Me.cbeliminar2)
         Me.GroupBox6.Controls.Add(Me.inexistente2)
@@ -529,14 +555,14 @@ Partial Class fmrDetalleEgreso1
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Listado del egreso de Productos:"
         '
-        'txtiddetalle_ingreso
+        'txtiddetalle_egreso
         '
-        Me.txtiddetalle_ingreso.Enabled = False
-        Me.txtiddetalle_ingreso.Location = New System.Drawing.Point(337, 18)
-        Me.txtiddetalle_ingreso.Name = "txtiddetalle_ingreso"
-        Me.txtiddetalle_ingreso.Size = New System.Drawing.Size(86, 20)
-        Me.txtiddetalle_ingreso.TabIndex = 50
-        Me.txtiddetalle_ingreso.Visible = False
+        Me.txtiddetalle_egreso.Enabled = False
+        Me.txtiddetalle_egreso.Location = New System.Drawing.Point(368, 40)
+        Me.txtiddetalle_egreso.Name = "txtiddetalle_egreso"
+        Me.txtiddetalle_egreso.Size = New System.Drawing.Size(86, 20)
+        Me.txtiddetalle_egreso.TabIndex = 50
+        Me.txtiddetalle_egreso.Visible = False
         '
         'btnQuitar_articulo
         '
@@ -797,7 +823,7 @@ Partial Class fmrDetalleEgreso1
         'PictureBox2
         '
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Image = Global.CapaPresentacion.My.Resources.Resources.egresos
+        Me.PictureBox2.Image = Global.CapaPresentacion.My.Resources.Resources.ingresos
         Me.PictureBox2.Location = New System.Drawing.Point(0, -1)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(99, 54)
@@ -805,12 +831,25 @@ Partial Class fmrDetalleEgreso1
         Me.PictureBox2.TabIndex = 230
         Me.PictureBox2.TabStop = False
         '
+        'btnimprimir
+        '
+        Me.btnimprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnimprimir.Image = Global.CapaPresentacion.My.Resources.Resources.print_32
+        Me.btnimprimir.Location = New System.Drawing.Point(15, 11)
+        Me.btnimprimir.Name = "btnimprimir"
+        Me.btnimprimir.Size = New System.Drawing.Size(94, 34)
+        Me.btnimprimir.TabIndex = 55
+        Me.btnimprimir.UseVisualStyleBackColor = True
+        '
         'fmrDetalleEgreso1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1477, 641)
+        Me.ClientSize = New System.Drawing.Size(739, 658)
+        Me.Controls.Add(Me.txtstock)
+        Me.Controls.Add(Me.txtiddetalle_egreso)
         Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
@@ -824,8 +863,10 @@ Partial Class fmrDetalleEgreso1
         Me.Controls.Add(Me.txtflag)
         Me.Controls.Add(Me.txtidcliente)
         Me.Controls.Add(Me.Label11)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "fmrDetalleEgreso1"
-        Me.Text = "fmrDetalleEgreso1"
+        Me.Text = "Egresos"
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -835,6 +876,7 @@ Partial Class fmrDetalleEgreso1
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        CType(Me.txtstock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcantidad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
@@ -877,7 +919,7 @@ Partial Class fmrDetalleEgreso1
     Friend WithEvents Label10 As Label
     Friend WithEvents txtidproducto As TextBox
     Friend WithEvents GroupBox6 As GroupBox
-    Friend WithEvents txtiddetalle_ingreso As TextBox
+    Friend WithEvents txtiddetalle_egreso As TextBox
     Friend WithEvents btnQuitar_articulo As Button
     Friend WithEvents cbeliminar2 As CheckBox
     Friend WithEvents inexistente2 As LinkLabel
@@ -915,4 +957,7 @@ Partial Class fmrDetalleEgreso1
     Friend WithEvents txtflag As TextBox
     Friend WithEvents txtidcliente As TextBox
     Friend WithEvents Label11 As Label
+    Friend WithEvents txtstock As NumericUpDown
+    Friend WithEvents Label15 As Label
+    Friend WithEvents btnimprimir As Button
 End Class

@@ -90,11 +90,11 @@ Public Class fmrElegirProducto
 
             Me.Close()
         ElseIf txtflag.Text = "2"
-            fmrDetalleEgreso.txtcodigo_barra.Text = datalistado.SelectedCells.Item(2).Value
-            fmrDetalleEgreso.txtidproducto.Text = datalistado.SelectedCells.Item(1).Value
-            fmrDetalleEgreso.txtnombre_producto.Text = datalistado.SelectedCells.Item(5).Value + " " + datalistado.SelectedCells.Item(6).Value
-            fmrDetalleEgreso.txtstock.Value = datalistado.SelectedCells.Item(7).Value
-
+            fmrDetalleEgreso1.txtcodigo_barra.Text = datalistado.SelectedCells.Item(2).Value
+            fmrDetalleEgreso1.txtidproducto.Text = datalistado.SelectedCells.Item(1).Value
+            fmrDetalleEgreso1.txtnombre_producto.Text = datalistado.SelectedCells.Item(5).Value + " " + datalistado.SelectedCells.Item(6).Value
+            fmrDetalleEgreso1.txtstock.Value = datalistado.SelectedCells.Item(7).Value
+            fmrDetalleEgreso1.txtprecio_unitario.Text = datalistado.SelectedCells.Item(12).Value
         End If
         Me.Close()
 

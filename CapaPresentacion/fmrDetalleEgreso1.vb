@@ -516,12 +516,12 @@ Public Class fmrDetalleEgreso1
                     Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Elimina").Value)
 
                     If marcado Then
-                        Dim onekey As Integer = Convert.ToInt32(row.Cells("iddetalleegreso").Value)
+                        Dim onekey As Integer = Convert.ToInt32(row.Cells("idddetalle_egreso").Value)
                         Dim vdb As New vDetalle_Egreso
                         Dim func As New fDetalle_Egreso
                         vdb.giddetalle_egreso = onekey
-                        vdb.gidproducto = datalistado2.SelectedCells.Item(2).Value
-                        vdb.gidegreso = datalistado2.SelectedCells.Item(3).Value
+                        vdb.gidproducto = datalistado2.SelectedCells.Item(3).Value
+                        vdb.gidegreso = datalistado2.SelectedCells.Item(2).Value
                         vdb.gcantidad = Convert.ToInt64(datalistado2.SelectedCells.Item(7).Value)
 
                         If func.eliminar(vdb) Then
@@ -582,7 +582,7 @@ Public Class fmrDetalleEgreso1
     End Sub
 
     Private Sub btnbuscar_producto_Click(sender As Object, e As EventArgs) Handles btnbuscar_producto.Click
-        fmrElegirProducto.txtflag.Text = "1"
+        fmrElegirProducto.txtflag.Text = "2"
         fmrElegirProducto.ShowDialog()
     End Sub
 
@@ -629,4 +629,61 @@ Public Class fmrDetalleEgreso1
 
 
 #End Region
+#Region "validar globo rojo"
+
+    Private Sub txtcantidad_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtcantidad.ValueChanged
+        Dim cant As Double
+
+        cant = txtcantidad.Value
+
+        If txtcantidad.Value > txtstock.Value Then
+            MessageBox.Show("La cantidad que intenta vender supera stock", "Error en el egreso de producto", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            btnAgregarArticulo.Visible = 0
+            txtcantidad.Value = txtstock.Value
+
+        Else
+            btnAgregarArticulo.Visible = 1
+        End If
+
+
+        If txtcantidad.Value = 0 Then
+            btnAgregarArticulo.Visible = 0
+        Else
+            btnAgregarArticulo.Visible = 1
+        End If
+
+
+
+    End Sub
+    Private Sub txtidproducto_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtidproducto.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Seleccione el producto para añadir , este dato es obligatorio")
+        End If
+    End Sub
+    Private Sub txtprecio_unitario_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtprecio_unitario.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese precio unitario del producto, este dato es obligatorio")
+        End If
+    End Sub
+    Private Sub txtcodigo_barra_TextChanged(sender As Object, e As EventArgs) Handles txtcodigo_barra.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese Codigo de barra del producto, este dato es obligatorio")
+        End If
+    End Sub
+
+    Private Sub btnimprimir_Click(sender As Object, e As EventArgs) Handles btnimprimir.Click
+        frmReporteComprobante.txtidventa.Text = Me.txtidegreso.Text
+        frmReporteComprobante.ShowDialog()
+    End Sub
+
+
+#End Region
+
+
 End Class

@@ -603,7 +603,7 @@ Partial Class fmrDetalleEgreso
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label7.Location = New System.Drawing.Point(205, 59)
+        Me.Label7.Location = New System.Drawing.Point(205, 53)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(48, 13)
         Me.Label7.TabIndex = 36

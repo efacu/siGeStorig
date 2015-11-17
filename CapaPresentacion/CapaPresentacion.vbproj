@@ -239,6 +239,12 @@
       <DependentUpon>fmrLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="fmrLote.Designer.vb">
+      <DependentUpon>fmrLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fmrLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fmrMarca.Designer.vb">
       <DependentUpon>fmrMarca.vb</DependentUpon>
     </Compile>
@@ -354,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmrLogin.resx">
       <DependentUpon>fmrLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmrLote.resx">
+      <DependentUpon>fmrLote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmrMarca.resx">
       <DependentUpon>fmrMarca.vb</DependentUpon>
