@@ -22,7 +22,7 @@ Public Class fmrDetalleIngreso1
         txtcuit.Text = ""
         txtnum_documento.Text = ""
         txtobservaciones.Text = ""
-
+        txttelefono.Text = ""
         txtmonto.Text = "0"
         btbcancelar.Enabled = True
         btnIngresar.Visible = True
@@ -34,7 +34,8 @@ Public Class fmrDetalleIngreso1
         txtnombre_producto.Text = ""
         txtprecio_unitario.Text = ""
         txtcantidad.Value = 0
-
+        cbeliminar2.Checked = False
+        btnQuitar_articulo.Visible = False
     End Sub
     Private Sub mostrar_ingreso()
         Try
@@ -90,19 +91,33 @@ Public Class fmrDetalleIngreso1
     Private Sub ocultar_columnas_ingreso()
         datalistado.Columns(1).Visible = False
         datalistado.Columns(2).Visible = False
+        datalistado.Columns(3).Visible = False
+        datalistado.Columns(4).Visible = False
+        datalistado.Columns(5).Visible = False
+        datalistado.Columns(6).Visible = False
         datalistado.Columns(7).Visible = False
         datalistado.Columns(8).Visible = False
         datalistado.Columns(9).Visible = False
         datalistado.Columns(10).Visible = False
-        datalistado.Columns(16).Visible = False
-        datalistado.Columns(17).Visible = False
+        datalistado.Columns(11).Visible = False
+        datalistado.Columns(18).Visible = False
 
     End Sub
 
 
     Private Sub btnNuevoIngreso_Click(sender As Object, e As EventArgs) Handles btnNuevoIngreso.Click
+
+        txtidingreso.Text = ""
+        txtiddetalle_ingreso.Text = ""
         limpiar_ingreso()
+        limpiar_articulo()
+        dt2.Reset()
+        dt2.Dispose()
+        datalistado2.DataSource = Nothing
+        inexistente2.Visible = True
         habilito_proveedor()
+        GroupBox6.Enabled = False
+        GroupBox4.Enabled = False
         cbtipo_ingreso.Focus()
 
     End Sub
@@ -125,7 +140,7 @@ Public Class fmrDetalleIngreso1
         btbcancelar.Enabled = False
     End Sub
     Private Sub btnIngresar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIngresar.Click
-        If Me.ValidateChildren = True And txtidproveedor.Text <> "" And txtnombre_proveedor.Text <> "" And txtnum_documento.Text <> "" Then
+        If Me.ValidateChildren = True And Me.txtidproveedor.Text <> "" And Me.txtnombre_proveedor.Text <> "" And Me.txtnum_documento.Text <> "" Then
             Try
                 Dim dts As New vIngreso
                 Dim func As New fIngreso
@@ -226,28 +241,10 @@ Public Class fmrDetalleIngreso1
         fmrElegirProveedor.ShowDialog()
     End Sub
 
-#Region "validacion en rojo erroricono"
-    Private Sub txtidproveedor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtidproveedor.Validating
-        If DirectCast(sender, TextBox).Text.Length > 0 Then
-            Me.erroricono.SetError(sender, "")
-        Else
-            Me.erroricono.SetError(sender, "Seleccione el proveedor, este dato es obligatorio")
-        End If
-    End Sub
-    Private Sub txtnum_documento_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtnum_documento.Validating
-        If DirectCast(sender, TextBox).Text.Length > 0 Then
-            Me.erroricono.SetError(sender, "")
-        Else
-            Me.erroricono.SetError(sender, "Ingrese el número de comprobante, este dato es obligatorio")
-        End If
-    End Sub
-
-#End Region
 
 
-    Private Sub btnguardar_Click(sender As Object, e As EventArgs)
 
-    End Sub
+
 
     Private Sub btnEditarIngreso_Click(sender As Object, e As EventArgs)
         GroupBox1.Enabled = Enabled
@@ -268,26 +265,36 @@ Public Class fmrDetalleIngreso1
     End Sub
 
     Private Sub btneditar_selecionado_Click(sender As Object, e As EventArgs) Handles btneditar_selecionado.Click
-
-        txtidingreso.Text = datalistado.SelectedCells.Item(1).Value
-        txtidproveedor.Text = datalistado.SelectedCells.Item(2).Value
-        txtnombre_proveedor.Text = datalistado.SelectedCells.Item(3).Value + ", " + datalistado.SelectedCells.Item(4).Value + " " + datalistado.SelectedCells.Item(5).Value
-        txtdomicilio.Text = datalistado.SelectedCells.Item(8).Value + ", " + datalistado.SelectedCells.Item(9).Value + ". CP: " + datalistado.SelectedCells.Item(10).Value
-        txtcuit.Text = datalistado.SelectedCells.Item(6).Value
-        cbtipo_ingreso.Text = datalistado.SelectedCells.Item(11).Value
-        txtfecha.Text = datalistado.SelectedCells.Item(12).Value
-        cbtipo_documento.Text = datalistado.SelectedCells.Item(13).Value
-        txtnum_documento.Text = datalistado.SelectedCells.Item(14).Value
-        'Ver sumo subtotal
-        txtmonto.Text = datalistado.SelectedCells.Item(15).Value
-        txtobservaciones.Text = datalistado.SelectedCells.Item(16).Value
+        If datalistado.RowCount <> 0 Then
 
 
-        habilito_proveedor()
+            txtidingreso.Text = datalistado.SelectedCells.Item(1).Value
+            txtidproveedor.Text = datalistado.SelectedCells.Item(2).Value
+            txtnombre_proveedor.Text = datalistado.SelectedCells.Item(3).Value + ", " + datalistado.SelectedCells.Item(4).Value + " " + datalistado.SelectedCells.Item(5).Value
+            txtcuit.Text = datalistado.SelectedCells.Item(6).Value
+            txttelefono.Text = datalistado.SelectedCells.Item(7).Value
+            txtdomicilio.Text = datalistado.SelectedCells.Item(9).Value + ", " + datalistado.SelectedCells.Item(10).Value + ". CP: " + datalistado.SelectedCells.Item(11).Value
+            cbtipo_ingreso.Text = datalistado.SelectedCells.Item(12).Value
+            txtfecha.Text = datalistado.SelectedCells.Item(13).Value
+            cbtipo_documento.Text = datalistado.SelectedCells.Item(14).Value
+            txtnum_documento.Text = datalistado.SelectedCells.Item(15).Value
+            txtmonto.Text = datalistado.SelectedCells.Item(16).Value
+            txtobservaciones.Text = datalistado.SelectedCells.Item(17).Value
 
-        mostrar_articulo()
-        btnUpdateIngreso.Visible = True
-        btnIngresar.Visible = False
+
+            habilito_proveedor()
+
+            mostrar_articulo()
+            btnUpdateIngreso.Visible = True
+            btnIngresar.Visible = False
+        Else
+            habilito_proveedor()
+            mostrar_articulo()
+            btnUpdateIngreso.Visible = False
+            btnIngresar.Visible = True
+        End If
+
+
 
 
     End Sub
@@ -414,8 +421,8 @@ Public Class fmrDetalleIngreso1
                 inexistente2.Visible = False
 
             Else
-                datalistado.DataSource = Nothing
-                datalistado.ColumnHeadersVisible = False
+                datalistado2.DataSource = Nothing
+                datalistado2.ColumnHeadersVisible = False
                 inexistente2.Visible = True
             End If
         Catch ex As Exception
@@ -477,14 +484,16 @@ Public Class fmrDetalleIngreso1
                 dts.gimpuesto = 0
 
 
-                If func.insertar(dts) Then
-                    insertar_lote()
-                    MessageBox.Show("Producto fue añadido correctamente egreso", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    mostrar_articulo()
-                    limpiararticulo()
+                If func.insertar(dts) = True Then
+                    If insertar_lote() = True Then
 
-
-
+                        MessageBox.Show(" producto idingreso y al lote fue añadido correctamente", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        mostrar_articulo()
+                        limpiararticulo()
+                    ElseIf insertar_lote() = False Then
+                        quitar_lote()
+                        MessageBox.Show("Lote no fue añadido intentedetalle ingreso nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 Else
                     MessageBox.Show("Producto no fue añadido intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     mostrar_articulo()
@@ -501,19 +510,37 @@ Public Class fmrDetalleIngreso1
         End If
     End Sub
 
-    Dim loteaceptado_cancelado As Integer
+    Public loteaceptado_cancelado As New Integer
     Private Function insertar_lote() As Boolean
         fmrLote.txtidingreso.Text = txtidingreso.Text
         fmrLote.txtidproducto.Text = txtidproducto.Text
         fmrLote.txtcantidad.Text = txtcantidad.Value
         fmrLote.txtfecha_ingreso.Text = txtfecha.Text
+        fmrLote.txtpreciounitario.Text = txtprecio_unitario.Text
+        fmrLote.flag = 1
         fmrLote.ShowDialog()
+        If loteaceptado_cancelado = 1 Then
+            Return True
 
-
-
+        ElseIf loteaceptado_cancelado = 0 Then
+            Return False
+        End If
     End Function
 
+    Private Function quitar_lote() As Boolean
+        fmrLote.txtidingreso.Text = datalistado2.SelectedCells.Item(2).Value
+        fmrLote.txtidproducto.Text = datalistado2.SelectedCells.Item(3).Value
+        fmrLote.txtcantidad.Text = datalistado2.SelectedCells.Item(7).Value
+        fmrLote.txtpreciounitario.Text = datalistado2.SelectedCells.Item(8).Value
+        fmrLote.flag = 0
+        fmrLote.ShowDialog()
+        If loteaceptado_cancelado = 1 Then
+            Return True
 
+        ElseIf loteaceptado_cancelado = 0 Then
+            Return False
+        End If
+    End Function
 
     Private Sub btnQuitar_articulo_Click(sender As Object, e As EventArgs) Handles btnQuitar_articulo.Click
         Dim result As DialogResult
@@ -530,38 +557,49 @@ Public Class fmrDetalleIngreso1
                         Dim vdb As New vDetalle_Ingreso
                         Dim func As New fDetalle_Ingreso
                         vdb.giddetalle_ingreso = onekey
-                        vdb.gidproducto = datalistado2.SelectedCells.Item(3).Value
                         vdb.gidingreso = datalistado2.SelectedCells.Item(2).Value
+                        vdb.gidproducto = datalistado2.SelectedCells.Item(3).Value
                         vdb.gcantidad = Convert.ToInt64(datalistado2.SelectedCells.Item(7).Value)
 
-                        If func.eliminar(vdb) Then
-                            If func.disminuir_stock(vdb) = True Then
-                                cbeliminar.CheckState = CheckState.Unchecked
+
+                        If func.eliminar(vdb) = True Then
+                            If quitar_lote() = True Then
+                                cbeliminar2.CheckState = CheckState.Unchecked
+                                MessageBox.Show("Artículo fue quitado del ingreso", "Eliminando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Else
+                                cbeliminar2.CheckState = CheckState.Unchecked
+                                MessageBox.Show("Producto no fue eliminado de los registros intente de nuevo", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                             End If
                         Else
-                            MessageBox.Show("Artículo fue quitado del ingreso", "Eliminando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MsgBox("ëliminarme dio falso")
                         End If
-                    End If
 
+                    End If
                 Next
                 Call mostrar_articulo()
-
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
         Else
             MessageBox.Show("Cancelando eliminación de registros", "Eliminando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Call mostrar_articulo()
+
         End If
         insertarMonto()
+
         Call limpiar_articulo()
     End Sub
 
     Private Sub cbeliminar2_CheckedChanged(sender As Object, e As EventArgs) Handles cbeliminar2.CheckedChanged
         If cbeliminar2.CheckState = CheckState.Checked Then
             datalistado2.Columns.Item("Elimina").Visible = True
+            btnQuitar_articulo.Visible = True
+            GroupBox4.Enabled = False
         Else
             datalistado2.Columns.Item("Elimina").Visible = False
+            btnQuitar_articulo.Visible = False
+            GroupBox4.Enabled = True
         End If
     End Sub
 
@@ -571,6 +609,27 @@ Public Class fmrDetalleIngreso1
             chkcell.Value = Not chkcell.Value
         End If
     End Sub
+
+    Private Sub txtcodigo_barra_keydown(sender As Object, e As KeyEventArgs) Handles txtcodigo_barra.KeyDown
+        If e.KeyData = Keys.Enter Then
+            Dim dt_productos As New DataTable
+            Dim fun As New fIngreso
+
+            fun.buscarCodigoBarra(txtcodigo_barra.Text, dt_productos)
+            If dt_productos.Rows.Count > 0 Then
+                Me.txtidproducto.Text = dt_productos.Rows(0).Item("idproducto")
+                Me.txtnombre_producto.Text = dt_productos.Rows(0).Item("descripcion")
+                txtcantidad.Focus()
+
+            End If
+        End If
+    End Sub
+    Private Sub btnbuscar_producto_Click(sender As Object, e As EventArgs) Handles btnbuscar_producto.Click
+        fmrElegirProducto.txtflag.Text = "1"
+        fmrElegirProducto.ShowDialog()
+    End Sub
+
+
 
 
 #Region "mostrar mensaje informativo "
@@ -591,10 +650,7 @@ Public Class fmrDetalleIngreso1
         ttmensaje.ToolTipIcon = ToolTipIcon.Info
     End Sub
 
-    Private Sub btnbuscar_producto_Click(sender As Object, e As EventArgs) Handles btnbuscar_producto.Click
-        fmrElegirProducto.txtflag.Text = "1"
-        fmrElegirProducto.ShowDialog()
-    End Sub
+
 
     'Private Sub txtnombre_proveedor_clic(sender As Object, e As EventArgs) Handles txtnombre_proveedor.TextChanged
     '    txtnombre_proveedor.AutoCompleteCustomSource = buscar_prov()
@@ -614,23 +670,46 @@ Public Class fmrDetalleIngreso1
     '        Me.txttelefono.Text = dt_Proveedor.Rows(0).Item("telefono")
     '    End If
     'End Function
-    Private Sub txtcodigo_barra_keydown(sender As Object, e As KeyEventArgs) Handles txtcodigo_barra.KeyDown
-        If e.KeyData = Keys.Enter Then
-            Dim dt_productos As New DataTable
-            Dim fun As New fIngreso
 
-            fun.buscarCodigoBarra(txtcodigo_barra.Text, dt_productos)
-            If dt_productos.Rows.Count > 0 Then
-                Me.txtidproducto.Text = dt_productos.Rows(0).Item("idproducto")
-                Me.txtnombre_producto.Text = dt_productos.Rows(0).Item("descripcion")
-                txtcantidad.Focus()
+#End Region
 
-            End If
+#Region "validar globo rojo"
+
+    Private Sub txtidproveedor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtidproveedor.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Seleccione el proveedor, este dato es obligatorio")
         End If
     End Sub
-
-
-
+    Private Sub txtnum_documento_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtnum_documento.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese el número de comprobante, este dato es obligatorio")
+        End If
+    End Sub
+    Private Sub txtidproducto_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtidproducto.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Seleccione el producto para añadir , este dato es obligatorio")
+        End If
+    End Sub
+    Private Sub txtprecio_unitario_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtprecio_unitario.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese precio unitario del producto, este dato es obligatorio")
+        End If
+    End Sub
+    Private Sub txtcodigo_barra_TextChanged(sender As Object, e As EventArgs) Handles txtcodigo_barra.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese Codigo de barra del producto, este dato es obligatorio")
+        End If
+    End Sub
 
 
 

@@ -30,6 +30,48 @@ Public Class fLote
         End Try
     End Function
 
+    Public Function buscar_idlote(ByVal dts As vLote) As DataTable
+        Try
+            conectado()
+            cmd = New SqlCommand("buscar_id_lote")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+            cmd.Parameters.AddWithValue("@idingreso", dts.gidingreso)
+            cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
+            If cmd.ExecuteNonQuery Then
+                Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                da.Fill(dt)
+
+                Return dt
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return Nothing
+        Finally
+            desconectado()
+        End Try
+
+
+    End Function
+
+    Public Sub buscarCodigoBarra(ByVal codigo As String, ByRef result As DataTable)
+        Try
+            conectado()
+            cmd = New SqlCommand("buscar_codigo_barra")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@codigo_barra", codigo)
+            cmd.Connection = cnn
+            Dim da As New SqlDataAdapter : da.SelectCommand = cmd
+            da.Fill(result)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            desconectado()
+        End Try
+    End Sub
 
     Public Function insertar(ByVal dts As vLote) As Boolean
         Try
@@ -122,7 +164,7 @@ Public Class fLote
 
             cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
             cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
-
+            cmd.Parameters.AddWithValue("@precio_ingreso", dts.gprecio_ingreso)
             ''cmd.Parameters.AddWithValue("@precio_ingreso", dts.gprecio_unitario)
 
             If cmd.ExecuteNonQuery Then
@@ -149,6 +191,7 @@ Public Class fLote
 
             cmd.Parameters.AddWithValue("@idproducto", dts.gidproducto)
             cmd.Parameters.AddWithValue("@cantidad", dts.gcantidad)
+            'cmd.Parameters.AddWithValue("@precio_ingreso", dts.gprecio_ingreso)
             If cmd.ExecuteNonQuery Then
                 Return True
             Else

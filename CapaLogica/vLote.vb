@@ -7,6 +7,7 @@
     Dim observaciones As String
     Dim estado As String
 
+    Dim precio_ingreso As Double
     Public Property gidlote
         Get
             Return idlote
@@ -80,6 +81,16 @@
             estado = value
         End Set
     End Property
+
+    Public Property gprecio_ingreso
+        Get
+            Return precio_ingreso
+
+        End Get
+        Set(ByVal value)
+            precio_ingreso = value
+        End Set
+    End Property
     Public Sub New()
 
     End Sub
@@ -92,7 +103,8 @@
                    ByVal fecha_vencimiento As Date,
                    ByVal fecha_ingreso As Date,
                    ByVal observaciones As String,
-                   ByVal estado As String)
+                   ByVal estado As String,
+                   ByVal precio_ingreso As Double)
         gidlote = idlote
         gidingreso = idingreso
         gidproducto = idproducto
@@ -101,6 +113,7 @@
         gfecha_ingreso = fecha_ingreso
         gobservaciones = observaciones
         gestado = estado
+        gprecio_ingreso = precio_ingreso
 
 
 

@@ -732,6 +732,7 @@ Partial Class fmrDetalleIngreso1
         Me.btnQuitar_articulo.TabIndex = 30
         Me.btnQuitar_articulo.Text = "Quitar Artículo"
         Me.btnQuitar_articulo.UseVisualStyleBackColor = False
+        Me.btnQuitar_articulo.Visible = False
         '
         'cbeliminar2
         '

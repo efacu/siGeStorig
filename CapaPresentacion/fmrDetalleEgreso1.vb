@@ -466,7 +466,7 @@ Public Class fmrDetalleEgreso1
     End Sub
     Private Sub btnAgregarArticulo_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulo.Click
 
-        If Me.ValidateChildren = True And txtidproducto.Text <> "" And txtprecio_unitario.Text <> "" Then
+        If Me.ValidateChildren = True And txtidproducto.Text <> "" And txtprecio_unitario.Text <> "" And txtcodigo_barra.Text <> "" And txtcantidad.Value >= 0 Then
             Try
                 Dim dts As New vDetalle_Egreso
                 Dim func As New fDetalle_Egreso
